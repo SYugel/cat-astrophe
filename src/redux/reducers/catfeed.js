@@ -1,6 +1,5 @@
 export const FETCH_CATS = 'catastrophe/FETCH_CATS'
 
-
 export const initialState = {
   cats: []
 }
