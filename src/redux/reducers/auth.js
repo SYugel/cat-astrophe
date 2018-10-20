@@ -60,11 +60,16 @@ export const login = ({email, password}) => (dispatch) => {
     })  
 }
 
-export const setUser = () => (dispatch) => {
+export const setUser = () => {
   const user = localStorage.getItem('user')
   if (user) {
     return {
       type: LOGIN_SUCCESS, payload: JSON.parse(user)
+    }
+  }
+  else {
+    return {
+      type: LOGOUT
     }
   }
 }

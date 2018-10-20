@@ -50,7 +50,10 @@ export class App extends Component {
          {isAuthenticated &&
            <SideBar onLogout={this.handleLogout} />
          }
-         <Content style={{'paddingLeft': isAuthenticated ? '240px' : '0'}}>
+         <Content style={{
+             'paddingLeft': isAuthenticated ? '240px' : '0',
+             'width': isAuthenticated ? 'calc(100% - 240px)' : '100%'
+         }}>
            <Routes />
          </Content>
                
