@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ViewList from '@material-ui/icons/ViewList'
 import Settings from '@material-ui/icons/Settings'
 import ExitToApp from '@material-ui/icons/ExitToApp'
+import Avatar from '@material-ui/core/Avatar'
 import { withRouter } from 'react-router-dom'
 
 const drawerWidth = 240
@@ -33,7 +34,10 @@ class SideBar extends Component {
   }
 
   render() {
-    const { classes } = this.props
+    const {
+      classes,
+      user: { avatar, firstName, lastName }
+    } = this.props
     return (
       <Fragment>
         <Drawer
@@ -43,6 +47,10 @@ class SideBar extends Component {
           }}
           open={true}>
           <List>
+            <ListItem>
+              <Avatar alt="Sylvia Daniels" src={avatar} />
+              <ListItemText primary={`${firstName} ${lastName}`} />
+            </ListItem>
             <ListItem
               button
               onClick={() => {

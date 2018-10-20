@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 import SideBar from './Layout/SideBar'
 import { logout } from './redux/reducers/auth'
+import { resetFeed } from './redux/reducers/catfeed'
 
 const Wrap = styled.div`
   height: 100%;
@@ -35,17 +36,18 @@ export class App extends Component {
   }
 
   handleLogout() {
-    const { logout } = this.props
+    const { logout, resetFeed } = this.props
     logout()
+    resetFeed()
   }
 
   render() {
-    const { isAuthenticated } = this.props
+    const { isAuthenticated, user } = this.props
     return (
       <div>
         <HeaderBar />
         <MainDiv>
-          {isAuthenticated && <SideBar onLogout={this.handleLogout} />}
+          {isAuthenticated && <SideBar user={user} onLogout={this.handleLogout} />}
           <Content
             style={{
               paddingLeft: isAuthenticated ? '240px' : '0',
@@ -60,16 +62,18 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const { isAuthenticated } = state.auth
+  const { isAuthenticated, user } = state.auth
   return {
-    isAuthenticated
+    isAuthenticated,
+    user
   }
 }
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      logout
+      logout,
+      resetFeed
     },
     dispatch
   )

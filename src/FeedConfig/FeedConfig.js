@@ -60,7 +60,7 @@ export class FeedConfig extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      imageSize: props.feedConfig.imageSize || 'small',
+      imageSize: props.feedConfig.imageSize,
       imageType: props.feedConfig.imageType || 'gif'
     }
 
@@ -105,9 +105,21 @@ export class FeedConfig extends Component {
                     value={this.state.imageSize}
                     className={classes.radioGroup}
                     onChange={this.handleChange}>
-                    <FormControlLabel value="small" control={<Radio color="default"/>} label="Small" />
-                    <FormControlLabel value="medium" control={<Radio color="default"/>} label="Medium" />
-                    <FormControlLabel value="large" control={<Radio color="default"/>} label="Large" />
+                    <FormControlLabel
+                      value="small"
+                      control={<Radio color="default" />}
+                      label="Small"
+                    />
+                    <FormControlLabel
+                      value="med"
+                      control={<Radio color="default" />}
+                      label="Medium"
+                    />
+                    <FormControlLabel
+                      value="full"
+                      control={<Radio color="default" />}
+                      label="Large"
+                    />
                   </RadioGroup>
                 </FormControl>
                 <FormControl component="fieldset" className={classes.formControl}>
@@ -118,9 +130,17 @@ export class FeedConfig extends Component {
                     value={this.state.imageType}
                     className={classes.radioGroup}
                     onChange={this.handleChange}>
-                    <FormControlLabel value="gif" control={<Radio color="default"/>} label="Gif" />
-                    <FormControlLabel value="static" control={<Radio color="default"/>} label="Static Image" />
-                    <FormControlLabel value="both" control={<Radio color="default"/>} label="Both" />
+                    <FormControlLabel value="gif" control={<Radio color="default" />} label="Gif" />
+                    <FormControlLabel
+                      value="jpg,png"
+                      control={<Radio color="default" />}
+                      label="Static Image"
+                    />
+                    <FormControlLabel
+                      value="jpg,png,gif"
+                      control={<Radio color="default" />}
+                      label="Both"
+                    />
                   </RadioGroup>
                 </FormControl>
               </div>
