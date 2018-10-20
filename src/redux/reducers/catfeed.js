@@ -28,12 +28,9 @@ export default (state = initialState, action) => {
   }
 }
 
-export const setConfig = (config) => {
+export const setConfig = config => {
   return {
     type: SET_CONFIG,
     payload: config
   }
 }
-
-
-

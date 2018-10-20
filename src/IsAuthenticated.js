@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {isAuthenticated} from './Routes'
-import {setUser} from './redux/reducers/auth'
+import { isAuthenticated } from './Routes'
+import { setUser } from './redux/reducers/auth'
 
 export class IsAuthenticated extends Component {
   constructor(props) {
@@ -12,40 +12,42 @@ export class IsAuthenticated extends Component {
   componentWillMount() {
     this.setUser()
   }
-  
+
   componentDidMount() {
     this.setUser()
   }
-  
+
   componentDidUpdate() {
     this.setUser()
   }
-  
+
   setUser() {
-    const {isAuthenticated, setUser} = this.props
+    const { isAuthenticated, setUser } = this.props
     if (!isAuthenticated) {
       setUser()
     }
   }
-  
+
   render() {
     return null
   }
 }
-  
- const mapStateToProps = state => {
-    return {
-      isAuthenticated: state.auth.isAuthenticated
-    }
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
   }
-  
-  export const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-      {
-        setUser
-      },
-      dispatch
-    )
+}
 
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      setUser
+    },
+    dispatch
+  )
 
-export default connect(mapStateToProps, mapDispatchToProps)(IsAuthenticated)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(IsAuthenticated)

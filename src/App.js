@@ -1,14 +1,13 @@
 import 'babel-polyfill'
 import React, { Component, Fragment } from 'react'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Routes from './Routes'
 import HeaderBar from './Layout/HeaderBar'
 import styled from 'styled-components'
-import { withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import SideBar from './Layout/SideBar'
-import {logout} from './redux/reducers/auth'
-
+import { logout } from './redux/reducers/auth'
 
 const Wrap = styled.div`
   height: 100%;
@@ -25,46 +24,43 @@ const MainDiv = styled.div`
   width: 100%;
   overflow: hidden;
   position: absolute;
-  margin-top:64px;
+  margin-top: 64px;
   background-color: lightgrey;
 `
-
 
 export class App extends Component {
   constructor(props) {
     super(props)
     this.handleLogout = this.handleLogout.bind(this)
   }
-  
+
   handleLogout() {
-    const {logout} = this.props
+    const { logout } = this.props
     logout()
   }
-  
+
   render() {
-    const {isAuthenticated} = this.props;
+    const { isAuthenticated } = this.props
     return (
       <div>
-       <HeaderBar />
-       <MainDiv>
-         {isAuthenticated &&
-           <SideBar onLogout={this.handleLogout} />
-         }
-         <Content style={{
-             'paddingLeft': isAuthenticated ? '240px' : '0',
-             'width': isAuthenticated ? 'calc(100% - 240px)' : '100%'
-         }}>
-           <Routes />
-         </Content>
-               
-       </MainDiv>
+        <HeaderBar />
+        <MainDiv>
+          {isAuthenticated && <SideBar onLogout={this.handleLogout} />}
+          <Content
+            style={{
+              paddingLeft: isAuthenticated ? '240px' : '0',
+              width: isAuthenticated ? 'calc(100% - 240px)' : '100%'
+            }}>
+            <Routes />
+          </Content>
+        </MainDiv>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  const {isAuthenticated} = state.auth
+  const { isAuthenticated } = state.auth
   return {
     isAuthenticated
   }
@@ -78,4 +74,9 @@ const mapDispatchToProps = dispatch =>
     dispatch
   )
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+)

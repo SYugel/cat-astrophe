@@ -3,7 +3,6 @@ export const LOGIN_SUCCESS = 'catastrophe/LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'catastrophe/LOGIN_FAIL'
 export const LOGOUT = 'catastrophe/LOGOUT'
 
-
 export const initialState = {
   user: null,
   loginFailed: null,
@@ -35,39 +34,35 @@ export default (state = initialState, action) => {
       }
     case LOGOUT:
       return initialState
-      
+
     default:
       return state
   }
 }
 
+export const login = ({ email, password }) => dispatch => {
+  return new Promise((resolve, reject) => {
+    dispatch({ type: LOGIN })
 
-
-export const login = ({email, password}) => (dispatch) => {
-    return new Promise((resolve, reject) => {
-      dispatch({type: LOGIN})
-      
-      const validatedUser = auth({email, password});
-      if (validatedUser.isValid) {
-        dispatch({type: LOGIN_SUCCESS, payload: validatedUser.user})
-        resolve({type: LOGIN_SUCCESS})
-      }
-      else {
-        dispatch({type: LOGIN_FAIL, payload: validatedUser.error})
-        resolve({type: LOGIN_FAIL})
-      }
-
-    })  
+    const validatedUser = auth({ email, password })
+    if (validatedUser.isValid) {
+      dispatch({ type: LOGIN_SUCCESS, payload: validatedUser.user })
+      resolve({ type: LOGIN_SUCCESS })
+    } else {
+      dispatch({ type: LOGIN_FAIL, payload: validatedUser.error })
+      resolve({ type: LOGIN_FAIL })
+    }
+  })
 }
 
 export const setUser = () => {
   const user = localStorage.getItem('user')
   if (user) {
     return {
-      type: LOGIN_SUCCESS, payload: JSON.parse(user)
+      type: LOGIN_SUCCESS,
+      payload: JSON.parse(user)
     }
-  }
-  else {
+  } else {
     return {
       type: LOGOUT
     }
@@ -89,15 +84,14 @@ const validUser = {
   avatar: 'https://randomuser.me/api/portraits/women/63.jpg'
 }
 
-function auth({email, password}) {
+function auth({ email, password }) {
   if (email === validUser.email && password === validUser.password) {
     localStorage.setItem('user', JSON.stringify(validUser))
     return {
       isValid: true,
-      user: validUser,
+      user: validUser
     }
-  }
-  else {
+  } else {
     localStorage.removeItem('user')
     return {
       isValid: false,
@@ -105,5 +99,5 @@ function auth({email, password}) {
       error: 'The email or password is incorrect'
     }
   }
-  return true;
+  return true
 }

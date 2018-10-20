@@ -1,21 +1,20 @@
-import React, {Component, Fragment} from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Paper from '@material-ui/core/Paper';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import { withRouter} from 'react-router-dom'
+import React, { Component, Fragment } from 'react'
+import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
+import FormControl from '@material-ui/core/FormControl'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Paper from '@material-ui/core/Paper'
+import withStyles from '@material-ui/core/styles/withStyles'
+import Typography from '@material-ui/core/Typography'
+import Input from '@material-ui/core/Input'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormLabel from '@material-ui/core/FormLabel'
+import Radio from '@material-ui/core/Radio'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {setConfig} from '../redux/reducers/catfeed'
-
+import { setConfig } from '../redux/reducers/catfeed'
 
 const styles = theme => ({
   layout: {
@@ -34,7 +33,7 @@ const styles = theme => ({
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing.unit
   },
   buttonGroup: {
     marginTop: theme.spacing.unit * 3,
@@ -45,14 +44,12 @@ const styles = theme => ({
     alignItems: 'center'
   },
   radioGroup: {
-    margin: `${theme.spacing.unit}px 0`,
+    margin: `${theme.spacing.unit}px 0`
   },
   formControl: {
-    margin: theme.spacing.unit * 3,
+    margin: theme.spacing.unit * 3
   }
 })
-
-
 
 export class FeedConfig extends Component {
   constructor(props) {
@@ -61,31 +58,31 @@ export class FeedConfig extends Component {
       imageSize: props.feedConfig.imageSize || 'small',
       imageType: props.feedConfig.imageType || 'gif'
     }
-    
+
     this.handleCancel = this.handleCancel.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  
+
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({ [event.target.name]: event.target.value })
   }
-  
+
   handleCancel() {
-    const {history} = this.props
+    const { history } = this.props
     history.push('/feed')
   }
-  
+
   handleSubmit(event) {
-    const {setConfig, history} = this.props
-    const {imageSize, imageType} = this.state
+    const { setConfig, history } = this.props
+    const { imageSize, imageType } = this.state
     event.preventDefault()
-    setConfig({imageSize: imageSize, imageType: imageType})
+    setConfig({ imageSize: imageSize, imageType: imageType })
     history.push('./feed')
   }
-  
+
   render() {
-    const {classes} = this.props
+    const { classes } = this.props
     return (
       <Fragment>
         <main className={classes.layout}>
@@ -101,27 +98,25 @@ export class FeedConfig extends Component {
                   name="imageSize"
                   value={this.state.imageSize}
                   className={classes.radioGroup}
-                  onChange={this.handleChange}
-                >
-                <FormControlLabel value="small" control={<Radio />} label="Small" />
-                <FormControlLabel value="medium" control={<Radio />} label="Medium" />
-                <FormControlLabel value="large" control={<Radio />} label="Large" />
-              </RadioGroup>
-            </FormControl>
-            <FormControl component="fieldset" className={classes.formControl}>
-              <FormLabel component="legend">Image Type</FormLabel>
-              <RadioGroup
-                aria-label="Image Type"
-                name="imageType"
-                value={this.state.imageType}
-                className={classes.radioGroup}
-                onChange={this.handleChange}
-              >
-              <FormControlLabel value="gif" control={<Radio />} label="Gif" />
-              <FormControlLabel value="static" control={<Radio />} label="Static Image" />
-              <FormControlLabel value="both" control={<Radio />} label="Both" />
-            </RadioGroup>
-          </FormControl>
+                  onChange={this.handleChange}>
+                  <FormControlLabel value="small" control={<Radio />} label="Small" />
+                  <FormControlLabel value="medium" control={<Radio />} label="Medium" />
+                  <FormControlLabel value="large" control={<Radio />} label="Large" />
+                </RadioGroup>
+              </FormControl>
+              <FormControl component="fieldset" className={classes.formControl}>
+                <FormLabel component="legend">Image Type</FormLabel>
+                <RadioGroup
+                  aria-label="Image Type"
+                  name="imageType"
+                  value={this.state.imageType}
+                  className={classes.radioGroup}
+                  onChange={this.handleChange}>
+                  <FormControlLabel value="gif" control={<Radio />} label="Gif" />
+                  <FormControlLabel value="static" control={<Radio />} label="Static Image" />
+                  <FormControlLabel value="both" control={<Radio />} label="Both" />
+                </RadioGroup>
+              </FormControl>
               <div className={classes.buttonGroup}>
                 <Button
                   onClick={this.handleCancel}
@@ -134,12 +129,10 @@ export class FeedConfig extends Component {
                   type="submit"
                   variant="contained"
                   color="primary"
-                  className={classes.submit}
-                >
+                  className={classes.submit}>
                   Save
                 </Button>
               </div>
-              
             </form>
           </Paper>
         </main>
@@ -149,7 +142,7 @@ export class FeedConfig extends Component {
 }
 
 const mapStateToProps = state => {
-  const {feedConfig} = state.catfeed
+  const { feedConfig } = state.catfeed
   return {
     feedConfig
   }
@@ -164,4 +157,9 @@ const mapDispatchToProps = dispatch =>
   )
 
 // export default withRouter(withStyles(styles)(FeedConfig))
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(FeedConfig)))
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withStyles(styles)(FeedConfig))
+)
