@@ -52,6 +52,7 @@ export default class Routes extends Component {
           <Route path="/login" component={Login} />
           <PrivateRoute exact path="/feed" component={CatFeed} />
           <PrivateRoute exact path="/config" component={FeedConfig} />
+          <PrivateRoute exact path="/" component={CatFeed} />
         </Switch>
       </Fragment>
     )

@@ -48,6 +48,11 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit * 3
+  },
+  radioContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around'
   }
 })
 
@@ -91,32 +96,34 @@ export class FeedConfig extends Component {
               Configure Feed
             </Typography>
             <form onSubmit={this.handleSubmit} className={classes.form}>
-              <FormControl component="fieldset" className={classes.formControl}>
-                <FormLabel component="legend">Image Size</FormLabel>
-                <RadioGroup
-                  aria-label="Image Size"
-                  name="imageSize"
-                  value={this.state.imageSize}
-                  className={classes.radioGroup}
-                  onChange={this.handleChange}>
-                  <FormControlLabel value="small" control={<Radio />} label="Small" />
-                  <FormControlLabel value="medium" control={<Radio />} label="Medium" />
-                  <FormControlLabel value="large" control={<Radio />} label="Large" />
-                </RadioGroup>
-              </FormControl>
-              <FormControl component="fieldset" className={classes.formControl}>
-                <FormLabel component="legend">Image Type</FormLabel>
-                <RadioGroup
-                  aria-label="Image Type"
-                  name="imageType"
-                  value={this.state.imageType}
-                  className={classes.radioGroup}
-                  onChange={this.handleChange}>
-                  <FormControlLabel value="gif" control={<Radio />} label="Gif" />
-                  <FormControlLabel value="static" control={<Radio />} label="Static Image" />
-                  <FormControlLabel value="both" control={<Radio />} label="Both" />
-                </RadioGroup>
-              </FormControl>
+              <div className={classes.radioContainer}>
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <FormLabel component="legend">Image Size</FormLabel>
+                  <RadioGroup
+                    aria-label="Image Size"
+                    name="imageSize"
+                    value={this.state.imageSize}
+                    className={classes.radioGroup}
+                    onChange={this.handleChange}>
+                    <FormControlLabel value="small" control={<Radio color="default"/>} label="Small" />
+                    <FormControlLabel value="medium" control={<Radio color="default"/>} label="Medium" />
+                    <FormControlLabel value="large" control={<Radio color="default"/>} label="Large" />
+                  </RadioGroup>
+                </FormControl>
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <FormLabel component="legend">Image Type</FormLabel>
+                  <RadioGroup
+                    aria-label="Image Type"
+                    name="imageType"
+                    value={this.state.imageType}
+                    className={classes.radioGroup}
+                    onChange={this.handleChange}>
+                    <FormControlLabel value="gif" control={<Radio color="default"/>} label="Gif" />
+                    <FormControlLabel value="static" control={<Radio color="default"/>} label="Static Image" />
+                    <FormControlLabel value="both" control={<Radio color="default"/>} label="Both" />
+                  </RadioGroup>
+                </FormControl>
+              </div>
               <div className={classes.buttonGroup}>
                 <Button
                   onClick={this.handleCancel}

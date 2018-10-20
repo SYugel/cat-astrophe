@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/NeatCapitalOrg/facebook4cats#readme",
   "lint-staged": {
-    "*.js": [
+    "*.{js}": [
       "prettier --write",
       "git add"
     ]
