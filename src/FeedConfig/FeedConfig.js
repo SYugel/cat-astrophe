@@ -149,7 +149,7 @@ export class FeedConfig extends Component {
                   onClick={this.handleCancel}
                   type="button"
                   variant="contained"
-                  color="secondary">
+                  color="default">
                   Cancel
                 </Button>
                 <Button

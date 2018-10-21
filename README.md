@@ -101,3 +101,45 @@ The Cat API will return a random cat image. Docs here: https://thecatapi.com/
 ## QUESTIONS / COMMENTS / CONCERNS / ISSUES?
 
 If you need anything at all, just reach out. This is supposed to sort of simulate an actual work environment, and your work colleagues are there to help. So don't be bashful. 
+
+## Implementation dependencies
+
+In addition to the React and Redux libraries.  This project is using a few third party libraries to help achieve the overall functionality.
+
+1.  Material-UI as the UI framework.
+
+2.  Along with Material-UI a few components were created using 
+Styled Components.  With both this and Material-UI withStyles HOC there is almost no traditional css in this application.
+
+3.  React Router is used to handle routing in the app.
+
+4.  Axios is used as the HTTP client to communicate with the Cat API.
+
+5.  React Waypoint is used to implement the infinite scrolling on the feeds page.
+
+
+## Use Notes
+
+This app is really simple and should be pretty self explanatory once it is up and running.  
+Once you run `npm start` the application should be built and bundled.  A browser should open and you will see the login page. 
+If the browser doesn't open the app is being served locally on port 7777.
+
+There is only one user that is valid to log in.
+
+```javascript
+{
+  firstName: 'Syliva',
+  lastName: 'Daniels',
+  email: 'test@example.com',
+  password: 'letmein2',
+  avatar: 'https://randomuser.me/api/portraits/women/63.jpg'
+}
+```
+
+The email and password of the above user should log you into the application.
+
+Upon login you will be taken to the Feeds page and the cat pictures will start loading. 
+
+The side menu contains all the navigation links to the other areas of the app.  These include a Feed Configuration page, and the logout button.
+
+
