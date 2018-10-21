@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route, Switch, withRouter, Redirect } from 'react-router-dom'
-import Login from './Login'
+import Login from './Login/Login'
 import CatFeed from './CatFeed/CatFeed'
 import FeedConfig from './FeedConfig/FeedConfig'
 import IsAuthenticated from './IsAuthenticated'
